@@ -1,4 +1,4 @@
-export const mockUsers = [
+export const mockUserSettings = [
   {
     userId: 1,
     receiveNotifications: false,
