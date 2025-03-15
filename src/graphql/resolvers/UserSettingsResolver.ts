@@ -1,5 +1,5 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserSetting } from '../models/UserSetting';
+import { UserSetting } from '../models/UserSetting.entity';
 import { CreateUserSettingsInput } from '../utils/CreateUserSettingsInput';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
 

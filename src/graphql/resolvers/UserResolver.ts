@@ -7,9 +7,9 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { User } from '../models/User';
+import { User } from '../models/User.entity';
 import { mockUsers } from 'src/__mocks__/mockUsers';
-import { UserSetting } from '../models/UserSetting';
+import { UserSetting } from '../models/UserSetting.entity';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
 import { create } from 'domain';
 import { CreateUserInput } from '../utils/CreateUserInput';
