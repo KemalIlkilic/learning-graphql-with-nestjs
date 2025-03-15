@@ -14,4 +14,8 @@ export const mockUsers = [
     username: 'Mehmet',
     displayName: 'The Doctor',
   },
+  {
+    id: 4,
+    username: 'Erhan',
+  },
 ];

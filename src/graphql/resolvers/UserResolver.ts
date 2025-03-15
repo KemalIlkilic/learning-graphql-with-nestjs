@@ -11,6 +11,8 @@ import { User } from '../models/User';
 import { mockUsers } from 'src/__mocks__/mockUsers';
 import { UserSetting } from '../models/UserSetting';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
+import { create } from 'domain';
+import { CreateUserInput } from '../utils/CreateUserInput';
 
 //In our example, since the class includes a field resolver function, we must supply the @Resolver() decorator with a value to indicate which class is the parent type
 @Resolver(() => User)
@@ -34,11 +36,8 @@ export class UserResolver {
   }
 
   @Mutation((returns) => User)
-  createUser(
-    @Args('username') username: string,
-    @Args('displayName', { nullable: true })
-    displayName: string,
-  ) {
+  createUser(@Args('createUserData') createUserData: CreateUserInput) {
+    const { username, displayName } = createUserData;
     const newUser = {
       id: mockUsers.length + 1,
       username,
