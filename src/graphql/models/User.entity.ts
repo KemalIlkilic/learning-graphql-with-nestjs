@@ -21,12 +21,12 @@ export class User {
   @Field()
   username: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Field({ nullable: true })
   displayName?: string;
 
   // with this nullable value, setting itself nullable not its properties
-  @OneToOne(() => UserSetting)
+  @OneToOne(() => UserSetting, { nullable: true })
   @JoinColumn() // Required for owning side of 1:1
   @Field({ nullable: true })
   settings?: UserSetting;
