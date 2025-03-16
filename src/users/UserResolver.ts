@@ -8,17 +8,18 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { User } from '../graphql/models/User.entity';
-import { mockUsers } from 'src/__mocks__/mockUsers';
 import { UserSetting } from '../graphql/models/UserSetting.entity';
-import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
-import { create } from 'domain';
 import { CreateUserInput } from '../graphql/utils/CreateUserInput';
 import { UserService } from './UserService';
+import { UserSettingsService } from 'src/userSettings/userSettingsService';
 
 //In our example, since the class includes a field resolver function, we must supply the @Resolver() decorator with a value to indicate which class is the parent type
 @Resolver(() => User)
 export class UserResolver {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private userSettingsService: UserSettingsService,
+  ) {}
 
   @Query((returns) => User, { nullable: true })
   async getUserById(@Args('id', { type: () => Int }) id: number) {
@@ -35,7 +36,7 @@ export class UserResolver {
   @ResolveField((returns) => UserSetting, { nullable: true })
   settings(@Parent() user: User) {
     const { id } = user;
-    return mockUserSettings.find((setting) => setting.userId === id);
+    return this.userSettingsService.getUserSettingById(id);
   }
 
   @Mutation((returns) => User)
